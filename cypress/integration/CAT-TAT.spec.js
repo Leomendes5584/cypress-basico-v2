@@ -78,4 +78,45 @@ describe('Central de Atendimento ao Cliente TAT', function () {
         cy.get('.success').should('be.visible')
     })
 
+    it('seleciona um produto (YouTube) por seu texto', function () {
+        cy.get('#product')
+            .select('YouTube')
+            .should('have.value', 'youtube')
+    })
+
+    it('seleciona um produto (Mentoria) por seu valor (value)', function () {
+        cy.get('#product')
+            .select('mentoria')
+            .should('have.value', 'mentoria')
+    })
+
+    it('seleciona um produto (Blog) por seu índice', function () {
+        cy.get('#product')
+            .select(1)
+            .should('have.value', 'blog')
+    })
+
+    it('marca o tipo de atendimento "Feedback"', function () {
+        cy.get('input[type="radio"][value="feedback"]')
+            .check()
+            .should('have.value', 'feedback')
+    })
+
+    it('marca cada tipo de atendimento', function () {  ///Elementos do tipo RADIO
+        cy.get('input[type="radio"]')                     ///Aqui ele pega todos elementos do tipo RADIO = 3
+            .should('have.length', 3)                     ///Aqui ele verifica que realmente são, 3 na lista
+            .each(function ($radio) {                      ///Aqui o Each recebe função como argumento=passar por cada elemento do tipo RADIO
+                cy.wrap($radio).check()                   ///Aqui ele marca cada um por vez 
+                cy.wrap($radio).should('be.checked')      ///Aqui ele verifica que cada um foi marcado
+            })
+    })
+
+    it.only('marca ambos checkboxes, depois desmarca o último', function () {
+        cy.get('input[type="checkbox"]')
+            .check()
+            .last()
+            .uncheck()
+            .should('not.be.checked')
+    })
+
 })
