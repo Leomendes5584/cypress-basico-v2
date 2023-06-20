@@ -120,14 +120,44 @@ describe('Central de Atendimento ao Cliente TAT', function () {
             .should('not.be.checked')
     })
 
-    it.only('seleciona um arquivo da pasta fixtures', function (){
+    it('seleciona um arquivo da pasta fixtures', function (){
         cy.get('input[type="file"]')
         .should('not.have.value')
         .selectFile('./cypress/fixtures/example.json')
-        .should(function($input) {
-            console.log($input)
-            expect($input[0].files[0].name).to.equal('example.json')
+        .should(function($input) {                                            ///Verificação
+            expect($input[0].files[0].name).to.equal('example.json')          ///Verificação
         })
     })
 
+    it('seleciona um arquivo simulando um drag-and-drop', function (){
+        cy.get('input[type="file"]')
+        .should('not.have.value')
+        .selectFile('./cypress/fixtures/example.json',{ action : 'drag-drop' }) ///dra-drop arrasta o arquivo
+        .should(function($input) {                   
+            expect($input[0].files[0].name).to.equal('example.json')        
+        })
+    })
+    it('seleciona um arquivo utilizando uma fixture para a qual foi dada um alias', function (){
+        cy.fixture('example.json').as('sampleFile')   ///cypress já tem a função fixture, ALIAS: dou o nome dessa fixture de SAMPLEFILE <- achei e mudei o arqv antes de rodar o codg
+        cy.get('input[type="file"]')
+        .selectFile('@sampleFile')                   ///agora eu chamo o SAMPLEFILE
+        .should(function($input) {                 
+            expect($input[0].files[0].name).to.equal('example.json')     
+        })
+    })
+    it('verifica que a política de privacidade abre em outra aba sem a necessidade de um clique', function (){
+        cy.get('#privacy a').should('have.attr', 'target', '_blank')   ///pagina abre, porém em outra ABA.... attr = atributo
+    })
+
+    it('acessa a página da política de privacidade removendo o target e então clicando no link', function (){
+        cy.get('#privacy a')
+         .invoke('removeAttr', 'target')    ///target removiada = pagina abre na mesma Aba do teste, assim consigo trabalhar 
+         .click()
+
+        cy.contains('Talking About Testing').should('be.visible')
+    })
+    
+    it.only('testa a página da política de privacidade de forma independente', function(){
+         cy.visit('./src/privacy.html')
+    })
 })
