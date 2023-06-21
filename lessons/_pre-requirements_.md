@@ -2,11 +2,11 @@
 
 Antes de começar, garanta que os seguintes sistemas estejam instalados em seu computador.
 
-- [git](https://git-scm.com/) (estou usando a versão `2.34.1` enquanto escrevo esta aula)
-- [Node.js](https://nodejs.org/en/) (estou usando a versão `v16.13.2` enquanto escrevo esta aula)
-- npm (estou usando a versão `8.3.2` enquanto escrevo esta aula)
-- [Google Chrome](https://www.google.com/intl/pt_br/chrome/) (estou usando a versão `98.0.4758.80 (Official Build) (x86_64)` enquanto escrevo esta aula)
-- [Visual Studio Code](https://code.visualstudio.com/) (estou usando a versão `1.64.0` enquanto escrevo esta aula) ou alguma outra IDE de sua preferência
+- [git](https://git-scm.com/) (estou usando a versão `2.41.0` )
+- [Node.js](https://nodejs.org/en/) (estou usando a versão `v18.16.0` )
+- npm (estou usando a versão `9.5.1` )
+- [Google Chrome](https://www.google.com/intl/pt_br/chrome/) (estou usando a versão `114.0.5735.134 (Official Build) (x86_64)` )
+- [Visual Studio Code](https://code.visualstudio.com/) (estou usando a versão `1.79.2` ) ou alguma outra IDE de sua preferência
 
 > **Obs.:** Recomendo utilizar as mesmas versões, ou versões mais recentes dos sistemas listados acima.
 >
